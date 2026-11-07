@@ -1,0 +1,29 @@
+<app-game-page title="Dots">
+  @let view = state();
+  <div class="board" role="group" aria-label="Dots board">
+    <svg viewBox="-0.5 -0.5 11 11" aria-hidden="true">
+      @for (axis of axes; track axis) {
+        <line class="grid-line" [attr.x1]="axis" [attr.x2]="axis" y1="0" [attr.y2]="last" />
+        <line class="grid-line" x1="0" [attr.x2]="last" [attr.y1]="axis" [attr.y2]="axis" />
+      }
+      @for (edge of view.edges; track edge.a + ':' + edge.b) {
+        <line class="enclosure" [attr.data-player]="edge.player"
+          [attr.x1]="corners[edge.a].x" [attr.y1]="corners[edge.a].y"
+          [attr.x2]="corners[edge.b].x" [attr.y2]="corners[edge.b].y" />
+      }
+    </svg>
+    @for (dot of view.dots; track $index) {
+      <button type="button" class="corner" [attr.data-player]="dot" [attr.data-captured]="view.captured[$index]"
+        [attr.aria-disabled]="dot !== null" [attr.aria-label]="label($index)" (click)="play($index)">
+        <span></span>
+      </button>
+    }
+  </div>
+  <div class="scores" aria-label="Captured dots">
+    <span data-player="Blue">Blue {{ view.blue }}</span>
+    <span data-player="Red">Red {{ view.red }}</span>
+  </div>
+  <p class="status" role="status">{{ status() }}</p>
+  <button type="button" class="restart" (click)="restart()">Restart</button>
+  <p class="instructions">Take turns placing dots on empty corners. Close a loop with neighboring dots, including diagonals, to capture opposing dots inside. Lines cannot cross, but a larger loop can surround an existing one and take control inside it. When all corners are filled, the player who captured more dots wins.</p>
+</app-game-page>

@@ -42,5 +42,10 @@ export const routes: Routes = [
     title: 'Removals | Classic Games',
     loadComponent: () => import('./removals/removals').then((module) => module.Removals),
   },
+  {
+    path: 'dots',
+    title: 'Dots | Classic Games',
+    loadComponent: () => import('./dots/dots').then((module) => module.Dots),
+  },
   { path: '**', redirectTo: '' },
 ];
