@@ -1,0 +1,14 @@
+<app-game-page title="Match-3">
+  <div class="board" role="group" aria-label="Match-3 board">
+    @for (color of board(); track $index) {
+      <button type="button" class="cell" [attr.data-color]="color" [attr.aria-label]="label($index, color)"
+        [attr.aria-pressed]="selected() === $index" [disabled]="finished()" (click)="choose($index)">
+        {{ tiles[color].mark }}
+      </button>
+    }
+  </div>
+  <p class="stats">Tiles cleared {{ score() }} / {{ goal }} · Moves left {{ moves() }}</p>
+  <p class="status" role="status">{{ status() }}</p>
+  <button type="button" class="restart" (click)="restart()">Restart</button>
+  <p class="instructions">Select two neighboring tiles to swap them. Line up three or more of the same color in a row or column. Only swaps that make a match use a move.</p>
+</app-game-page>

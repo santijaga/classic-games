@@ -32,5 +32,10 @@ export const routes: Routes = [
     title: 'Arkanoid | Classic Games',
     loadComponent: () => import('./arkanoid/arkanoid').then((module) => module.Arkanoid),
   },
+  {
+    path: 'match-3',
+    title: 'Match-3 | Classic Games',
+    loadComponent: () => import('./match-3/match-3').then((module) => module.Match3),
+  },
   { path: '**', redirectTo: '' },
 ];
