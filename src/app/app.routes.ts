@@ -37,5 +37,10 @@ export const routes: Routes = [
     title: 'Match-3 | Classic Games',
     loadComponent: () => import('./match-3/match-3').then((module) => module.Match3),
   },
+  {
+    path: 'removals',
+    title: 'Removals | Classic Games',
+    loadComponent: () => import('./removals/removals').then((module) => module.Removals),
+  },
   { path: '**', redirectTo: '' },
 ];

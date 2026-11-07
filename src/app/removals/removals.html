@@ -1,0 +1,19 @@
+<app-game-page title="Removals">
+  <div class="board" role="group" aria-label="Removals board">
+    @for (color of board(); track $index) {
+      @if (color !== null) {
+        <button type="button" class="cell" [attr.data-color]="color" [attr.aria-label]="label($index, color)"
+          [disabled]="finished()" (click)="remove($index)">
+          {{ tiles[color].mark }}
+        </button>
+      } @else {
+        <span class="cell" aria-hidden="true"></span>
+      }
+    }
+  </div>
+  <p class="stats">Tiles left {{ remaining() }}</p>
+  <p class="status" role="status">{{ status() }}</p>
+  <button type="button" class="restart" (click)="retry()">Retry</button>
+  <button type="button" class="restart" (click)="startNew()">New board</button>
+  <p class="instructions">Select a group of two or more tiles of the same color that share edges. Tiles fall and empty columns close up. Clear the whole board to win.</p>
+</app-game-page>
