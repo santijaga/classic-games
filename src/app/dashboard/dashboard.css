@@ -1,0 +1,34 @@
+.dashboard {
+  width: min(100% - 2rem, 36rem);
+  margin: clamp(2.5rem, 8vw, 6rem) auto;
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.1;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 3vw, 1.25rem);
+}
+
+a {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+  font-size: clamp(1rem, 4vw, 1.375rem);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+a:hover {
+  background: var(--hover);
+}

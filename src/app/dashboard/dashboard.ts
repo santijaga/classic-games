@@ -1,0 +1,18 @@
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-dashboard',
+  imports: [RouterLink],
+  template: `
+    <main class="dashboard">
+      <h1>Classic Games</h1>
+      <nav aria-label="Games">
+        <a routerLink="/tic-tac-toe">Tic-Tac-Toe</a>
+        <a routerLink="/tetris">Tetris</a>
+      </nav>
+    </main>
+  `,
+  styleUrl: './dashboard.css',
+})
+export class Dashboard {}

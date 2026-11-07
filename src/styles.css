@@ -1,0 +1,40 @@
+:root {
+  color-scheme: light;
+  --surface: #fff;
+  --hover: #ededeb;
+  --border: #b9b9b4;
+  --muted: #545450;
+  --focus: #1459a1;
+  background: #f7f7f5;
+  color: #20201e;
+  font-family: system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--hover);
+}
+
+button:disabled {
+  cursor: default;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
