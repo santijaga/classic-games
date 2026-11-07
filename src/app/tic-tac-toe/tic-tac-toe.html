@@ -1,0 +1,16 @@
+<app-game-page title="Tic-Tac-Toe">
+  <div class="board" role="group" aria-label="Tic-Tac-Toe board">
+    @for (cell of board(); track $index) {
+      <button
+        type="button"
+        [class.winning]="winningLine()?.includes($index)"
+        [attr.aria-label]="'Square ' + ($index + 1) + ', ' + (cell ?? 'empty')"
+        [attr.aria-disabled]="!!cell || !!winningLine()"
+        (click)="play($index)"
+      >{{ cell }}</button>
+    }
+  </div>
+  <p class="status" role="status">{{ status() }}</p>
+  <button type="button" class="reset" (click)="reset()">Restart</button>
+  <p class="instructions">Two players take turns choosing an empty square. Get three in a row to win.</p>
+</app-game-page>
