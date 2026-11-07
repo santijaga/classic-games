@@ -17,5 +17,10 @@ export const routes: Routes = [
     title: 'Tetris | Classic Games',
     loadComponent: () => import('./tetris/tetris').then((module) => module.Tetris),
   },
+  {
+    path: 'racing',
+    title: 'Racing | Classic Games',
+    loadComponent: () => import('./racing/racing').then((module) => module.Racing),
+  },
   { path: '**', redirectTo: '' },
 ];

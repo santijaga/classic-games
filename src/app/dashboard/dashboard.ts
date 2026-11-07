@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
       <nav aria-label="Games">
         <a routerLink="/tic-tac-toe">Tic-Tac-Toe</a>
         <a routerLink="/tetris">Tetris</a>
+        <a routerLink="/racing">Racing</a>
       </nav>
     </main>
   `,

@@ -1,0 +1,25 @@
+<app-game-page title="Racing">
+  <svg viewBox="0 0 100 100" role="img" aria-label="Racing track">
+    @for (divider of laneCount() === 2 ? [50] : [100 / 3, 200 / 3]; track divider) {
+      <line class="divider" [attr.x1]="divider" [attr.x2]="divider" y1="0" y2="100" />
+    }
+    @for (car of obstacles(); track car.id) {
+      <rect class="obstacle" [attr.x]="carX(car.lane)" [attr.y]="car.y" [attr.width]="carWidth" [attr.height]="carHeight" />
+    }
+    <rect class="player" [attr.x]="carX(lane())" [attr.y]="playerY" [attr.width]="carWidth" [attr.height]="carHeight" />
+  </svg>
+  <app-arcade-controls
+    [phase]="loop.phase()"
+    [score]="score()"
+    [actions]="actions"
+    instructions="Use ← and → to change lanes. Avoid the other cars. Press P to pause or resume."
+    (start)="start()"
+    (pause)="loop.togglePause()"
+    (move)="move($event)"
+  >
+    <div class="lanes" role="group" aria-label="Lane count">
+      <button type="button" [attr.aria-pressed]="laneCount() === 2" (click)="selectLanes(2)">2 lanes</button>
+      <button type="button" [attr.aria-pressed]="laneCount() === 3" (click)="selectLanes(3)">3 lanes</button>
+    </div>
+  </app-arcade-controls>
+</app-game-page>
