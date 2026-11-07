@@ -1,5 +1,5 @@
 .dashboard {
-  width: min(100% - 2rem, 36rem);
+  width: calc(100% - 2rem);
   margin: clamp(2.5rem, 8vw, 6rem) auto;
 }
 
@@ -10,9 +10,10 @@ h1 {
 }
 
 nav {
+  --card-gap: clamp(0.75rem, 3vw, 1.25rem);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.75rem, 3vw, 1.25rem);
+  grid-template-columns: repeat(auto-fill, calc((min(100%, 36rem) - var(--card-gap)) / 2));
+  gap: var(--card-gap);
 }
 
 a {
