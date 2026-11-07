@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
         <a routerLink="/tetris">Tetris</a>
         <a routerLink="/racing">Racing</a>
         <a routerLink="/snake">Snake</a>
+        <a routerLink="/arkanoid">Arkanoid</a>
       </nav>
     </main>
   `,

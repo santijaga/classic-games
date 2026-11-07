@@ -1,0 +1,26 @@
+<app-game-page title="Arkanoid">
+  @let state = view();
+  <svg
+    [attr.viewBox]="viewBox"
+    role="img"
+    aria-label="Arkanoid playfield"
+    (pointerdown)="moveTo($event)"
+    (pointermove)="moveTo($event)"
+  >
+    @for (block of state.bricks; track block.id) {
+      <rect [attr.x]="block.x" [attr.y]="block.y" [attr.width]="brick.width" [attr.height]="brick.height" [attr.fill]="colors[block.row]" />
+    }
+    <rect class="paddle" [attr.x]="state.paddleX" [attr.y]="paddle.y" [attr.width]="paddle.width" [attr.height]="paddle.height" />
+    <circle class="ball" [attr.cx]="state.ball.x" [attr.cy]="state.ball.y" [attr.r]="ballRadius" />
+  </svg>
+  <p class="lives">Lives {{ state.lives }}</p>
+  <app-arcade-controls
+    [phase]="loop.phase()"
+    [score]="state.score"
+    [actions]="actions"
+    instructions="Move the paddle with ← and →, or move your pointer across the field. Bounce the ball to clear all bricks. Press P to pause or resume."
+    (start)="start()"
+    (pause)="loop.togglePause()"
+    (move)="move($event)"
+  />
+</app-game-page>
