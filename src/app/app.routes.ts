@@ -22,5 +22,10 @@ export const routes: Routes = [
     title: 'Racing | Classic Games',
     loadComponent: () => import('./racing/racing').then((module) => module.Racing),
   },
+  {
+    path: 'snake',
+    title: 'Snake | Classic Games',
+    loadComponent: () => import('./snake/snake').then((module) => module.Snake),
+  },
   { path: '**', redirectTo: '' },
 ];

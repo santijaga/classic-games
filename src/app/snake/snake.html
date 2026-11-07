@@ -1,0 +1,19 @@
+<app-game-page title="Snake">
+  <svg [attr.viewBox]="viewBox" role="img" aria-label="Snake playfield">
+    @for (segment of body(); track $index) {
+      <rect class="segment" [class.head]="$first" [attr.x]="segment.x" [attr.y]="segment.y" width="1" height="1" />
+    }
+    @if (food(); as point) {
+      <circle class="food" [attr.cx]="point.x + 0.5" [attr.cy]="point.y + 0.5" r="0.39" />
+    }
+  </svg>
+  <app-arcade-controls
+    [phase]="loop.phase()"
+    [score]="score()"
+    [actions]="actions"
+    instructions="Use the arrow keys to turn. Eat food to grow, and avoid the walls and your tail. Press P to pause or resume."
+    (start)="start()"
+    (pause)="loop.togglePause()"
+    (move)="turn($event)"
+  />
+</app-game-page>
