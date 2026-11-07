@@ -47,5 +47,10 @@ export const routes: Routes = [
     title: 'Dots | Classic Games',
     loadComponent: () => import('./dots/dots').then((module) => module.Dots),
   },
+  {
+    path: 'connect-four',
+    title: 'Connect Four | Classic Games',
+    loadComponent: () => import('./connect-four/connect-four').then((module) => module.ConnectFour),
+  },
   { path: '**', redirectTo: '' },
 ];

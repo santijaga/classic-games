@@ -1,0 +1,17 @@
+<app-game-page title="Connect Four">
+  <div class="board" role="group" aria-label="Connect Four board">
+    @for (column of board(); track $index; let x = $index) {
+      <button type="button" class="column" [attr.aria-label]="columnLabel(x)"
+        [attr.aria-disabled]="finished() || column[0] !== null" (click)="play(x)">
+        <span class="number" aria-hidden="true">{{ x + 1 }}</span>
+        @for (disc of column; track $index) {
+          <span class="disc" [attr.data-player]="disc" [class.winning]="winning().includes(x * rows + $index)"
+            aria-hidden="true"></span>
+        }
+      </button>
+    }
+  </div>
+  <p class="status" role="status">{{ status() }}</p>
+  <button type="button" class="restart" (click)="restart()">Restart</button>
+  <p class="instructions">Take turns selecting a column to drop a disc. Connect four of your discs horizontally, vertically, or diagonally to win.</p>
+</app-game-page>
