@@ -1,0 +1,42 @@
+<app-game-page title="Tetris">
+  @let state = view();
+  <div #board class="board" role="img" aria-label="Tetris playfield" tabindex="-1">
+    @for (cell of state.cells; track $index) {
+      <span [attr.data-piece]="cell"></span>
+    }
+  </div>
+
+  <div class="stats">
+    <span>Score {{ state.score }}</span>
+    <span>Lines {{ state.lines }}</span>
+  </div>
+  <p class="status" role="status">
+    @switch (state.phase) {
+      @case ('ready') { Ready }
+      @case ('playing') { Playing }
+      @case ('paused') { Paused }
+      @case ('game-over') { Game over }
+    }
+  </p>
+
+  <div class="controls" role="group" aria-label="Game controls">
+    <button type="button" (click)="start()">{{ state.phase === 'ready' ? 'Start' : 'Restart' }}</button>
+    <button
+      type="button"
+      [disabled]="state.phase === 'ready' || state.phase === 'game-over'"
+      (click)="act('pause')"
+    >{{ state.phase === 'paused' ? 'Resume' : 'Pause' }}</button>
+  </div>
+  <div class="controls" role="group" aria-label="Piece controls">
+    <button type="button" [disabled]="state.phase !== 'playing'" (click)="act('left')">Left</button>
+    <button type="button" [disabled]="state.phase !== 'playing'" (click)="act('right')">Right</button>
+    <button type="button" [disabled]="state.phase !== 'playing'" (click)="act('rotate')">Rotate</button>
+    <button type="button" [disabled]="state.phase !== 'playing'" (click)="act('down')">Down</button>
+    <button type="button" [disabled]="state.phase !== 'playing'" (click)="act('drop')">Drop</button>
+  </div>
+
+  <p class="instructions">
+    Fill horizontal rows to clear them. Use ← and → to move, ↑ to rotate, ↓ to lower,
+    Space to drop, and P to pause or resume.
+  </p>
+</app-game-page>

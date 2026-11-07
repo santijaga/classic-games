@@ -1,0 +1,59 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  width: clamp(9rem, 28dvh, 16rem);
+  max-width: 100%;
+  aspect-ratio: 1 / 2;
+  margin-inline: auto;
+  border: 1px solid var(--border);
+  background: #e7e7e3;
+  gap: 1px;
+}
+
+.board span { background: var(--surface); }
+.board [data-piece='I'] { background: #087b8b; }
+.board [data-piece='J'] { background: #365fc0; }
+.board [data-piece='L'] { background: #ba5a18; }
+.board [data-piece='O'] { background: #c39213; }
+.board [data-piece='S'] { background: #368149; }
+.board [data-piece='T'] { background: #8054a5; }
+.board [data-piece='Z'] { background: #b54545; }
+
+.stats,
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.stats {
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.status {
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.controls + .controls {
+  margin-top: 0.5rem;
+}
+
+button {
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  touch-action: manipulation;
+}
+
+button:disabled {
+  opacity: 0.55;
+}
+
+.instructions {
+  color: var(--muted);
+  line-height: 1.5;
+}

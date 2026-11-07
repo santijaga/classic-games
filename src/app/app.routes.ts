@@ -12,5 +12,10 @@ export const routes: Routes = [
     title: 'Tic-Tac-Toe | Classic Games',
     loadComponent: () => import('./tic-tac-toe/tic-tac-toe').then((module) => module.TicTacToe),
   },
+  {
+    path: 'tetris',
+    title: 'Tetris | Classic Games',
+    loadComponent: () => import('./tetris/tetris').then((module) => module.Tetris),
+  },
   { path: '**', redirectTo: '' },
 ];
