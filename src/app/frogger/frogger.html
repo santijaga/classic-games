@@ -1,0 +1,49 @@
+<app-game-page title="Frogger">
+  @let state = view();
+  <svg [attr.viewBox]="viewBox" role="img" aria-label="Frogger playfield">
+    <rect class="bank" [attr.width]="size" [attr.height]="size" />
+    <rect class="river" y="1" [attr.width]="size" height="4" />
+    <rect class="road" y="6" [attr.width]="size" height="4" />
+    @for (home of homes; track home) {
+      <rect class="home" [class.reached]="state.reached[$index]"
+        [attr.x]="home - homeWidth / 2" y="0.1" [attr.width]="homeWidth" height="0.8" rx="0.12" />
+      @if (state.reached[$index]) {
+        <circle class="home-marker" [attr.cx]="home" cy="0.5" r="0.2" />
+      }
+    }
+    @for (lane of state.lanes; track lane.row) {
+      @if (lane.row !== 1 && lane.row !== 6) {
+        <line class="lane" x1="0" [attr.x2]="size" [attr.y1]="lane.row" [attr.y2]="lane.row" />
+      }
+      @for (x of lane.positions; track $index) {
+        <g [attr.transform]="'translate(' + x + ' ' + lane.row + ')'">
+          @if (lane.kind === 'river') {
+            <rect class="log" y="0.16" [attr.width]="lane.width" height="0.68" rx="0.17" />
+            <path class="log-grain" [attr.d]="'M0.22 .43 H' + (lane.width - 0.22)" />
+          } @else {
+            <rect class="car" y="0.18" [attr.width]="lane.width" height="0.64" rx="0.12" />
+            <rect class="windshield" [attr.x]="lane.speed > 0 ? lane.width - 0.44 : 0.22" y="0.29"
+              width="0.22" height="0.42" rx="0.04" />
+          }
+        </g>
+      }
+    }
+    <g class="frog" [attr.transform]="'translate(' + state.x + ' ' + (state.row + 0.5) + ')'">
+      <path class="legs" d="M-.12 .04 L-.31 .23 M.12 .04 L.31 .23" />
+      <ellipse rx="0.22" ry="0.28" />
+      <circle cx="-0.12" cy="-0.2" r="0.085" />
+      <circle cx="0.12" cy="-0.2" r="0.085" />
+    </g>
+  </svg>
+  <app-arcade-controls
+    [phase]="loop.phase()"
+    [score]="state.score"
+    [actions]="actions"
+    instructions="Use the arrow keys or buttons to hop. Dodge cars and ride logs across the river. Fill all five homes before you run out of lives. Press P to pause or resume."
+    (start)="start()"
+    (pause)="loop.togglePause()"
+    (move)="move($event)"
+  >
+    <p class="lives">Lives {{ state.lives }}</p>
+  </app-arcade-controls>
+</app-game-page>

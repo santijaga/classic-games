@@ -17,6 +17,7 @@ import { RouterLink } from '@angular/router';
         <a routerLink="/removals">Removals</a>
         <a routerLink="/dots">Dots</a>
         <a routerLink="/connect-four">Connect Four</a>
+        <a routerLink="/frogger">Frogger</a>
       </nav>
     </main>
   `,

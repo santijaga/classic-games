@@ -52,5 +52,10 @@ export const routes: Routes = [
     title: 'Connect Four | Classic Games',
     loadComponent: () => import('./connect-four/connect-four').then((module) => module.ConnectFour),
   },
+  {
+    path: 'frogger',
+    title: 'Frogger | Classic Games',
+    loadComponent: () => import('./frogger/frogger').then((module) => module.Frogger),
+  },
   { path: '**', redirectTo: '' },
 ];

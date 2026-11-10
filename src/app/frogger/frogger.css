@@ -1,0 +1,26 @@
+svg {
+  display: block;
+  width: min(100%, 24rem);
+  height: auto;
+  margin-inline: auto;
+  border: 1px solid var(--border);
+}
+
+.bank { fill: #e4ebdb; }
+.river { fill: #c7e1ec; }
+.road { fill: #dededa; }
+.home { fill: #f7f7f5; stroke: #708369; stroke-width: 0.04; }
+.home.reached { fill: #96ba85; }
+.home-marker { fill: #285932; }
+.lane { stroke: #fff; stroke-width: 0.04; stroke-dasharray: 0.28 0.22; }
+.log { fill: #805938; }
+.log-grain { fill: none; stroke: #b99271; stroke-width: 0.045; }
+.car { fill: #a43c3c; }
+.windshield { fill: #f2dddd; }
+.frog { fill: #286536; }
+.legs { fill: none; stroke: #286536; stroke-width: 0.09; stroke-linecap: round; }
+
+.lives {
+  margin: 0.5rem 0;
+  font-variant-numeric: tabular-nums;
+}
